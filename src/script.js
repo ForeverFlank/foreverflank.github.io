@@ -77,15 +77,17 @@ function generateNodes() {
 }
 
 function resize() {
-    ctx.canvas.width = window.innerWidth;
-    ctx.canvas.height = window.innerHeight;
+    ctx.canvas.width = Math.ceil(window.innerWidth / 1.5);
+    ctx.canvas.height = Math.ceil(window.innerHeight / 1.5);
     generateNodes();
 }
 resize();
 
 function background() {
-    let opacity = Math.min(1,
-        Math.max(0, (Date.now() - startTime) / 1000 - 0.5))
+    let opacity = Math.min(
+        1,
+        Math.max(0, (Date.now() - startTime) / 1000 - 0.5)
+    );
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.strokeStyle = ctx.fillStyle = `rgb(40, 40, 40, ${opacity})`;
     nodes.forEach((n) => {
@@ -93,14 +95,14 @@ function background() {
         n.adj.forEach((m) => {
             let d2 = distanceSquared(n, m);
             if (d2 > maxDistanceSquared) return;
-            ctx.lineWidth = 1.1 * (1 - Math.sqrt(d2) / maxDistance);
+            ctx.lineWidth = 0.6 * (1 - Math.sqrt(d2) / maxDistance);
             ctx.beginPath();
-            ctx.moveTo(n.x, n.y);
-            ctx.lineTo(m.x, m.y);
+            ctx.moveTo(Math.round(n.x), Math.round(n.y));
+            ctx.lineTo(Math.round(m.x), Math.round(m.y));
             ctx.stroke();
         });
         ctx.beginPath();
-        ctx.arc(n.x, n.y, 2, 0, 2 * Math.PI, false);
+        ctx.arc(Math.round(n.x), Math.round(n.y), 1, 0, 2 * Math.PI, false);
         ctx.fill();
     });
 }
