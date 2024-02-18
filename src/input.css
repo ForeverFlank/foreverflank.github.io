@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-181818 {
+    background-color: #181818;
+}
+
+* {
+    font-family: "Barlow", sans-serif;
+    font-style: normal;
+    color: white;
+}
