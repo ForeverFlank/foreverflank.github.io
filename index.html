@@ -15,24 +15,33 @@
 
 <body class="bg-181818">
   <canvas id="bg-canvas" class="fixed -z-10"></canvas>
-  <div class="w-full h-14 fixed backdrop-blur border border-b border-neutral-800"></div>
+  <div
+    class="flex flex-row w-full h-14 fixed top-0 backdrop-blur border border-b border-neutral-800 z-10 px-16 lg:px-40 gap-x-6 navbar">
+    <button class="h-14 w-24" onclick="document.getElementById('scroll-pos-1').scrollIntoView({
+      behavior: 'smooth'
+ })">Home</button>
+    <button class="h-14 w-24" onclick="document.getElementById('scroll-pos-2').scrollIntoView({
+  behavior: 'smooth'
+})">Projects</button>
+  </div>
   <div>
-    <div class="h-14"></div>
+    <div id="scroll-pos-1" class="h-14"></div>
     <div class="m-28 mx-auto text-center">
-      <p class="text-4xl sm:text-5xl">Hi, I'm</p>
-      <p class="text-6xl sm:text-8xl font-semibold">ForeverFlank</p>
-      <p class="text-4xl sm:text-5xl text-neutral-400">Singha Wansalaeh</p>
+      <p class="text-3xl sm:text-4xl md:text-5xl  start-fade opacity-0">Hi, I'm</p>
+      <p class="text-5xl sm:text-6xl md:text-8xl font-semibold  start-fade animation-delay-200 opacity-0">ForeverFlank</p>
+      <p class="text-3xl sm:text-4xl md:text-5xl text-neutral-400 start-fade animation-delay-400 opacity-0">Singha Wansalaeh</p>
     </div>
 
-    <div class="px-16 lg:px-40 my-8">
-      <p class="text-2xl font-semibold my-1">About me</p>
-      <p class="text-lg text-neutral-400">Hello! My name is Singha Wansalaeh, or you can call my pseudonym ForeverFlank.
+    <div class="px-16 lg:px-40 my-16">
+      <p class="text-2xl font-semibold my-1 start-fade animation-delay-800 opacity-0">About me</p>
+      <p class="text-lg text-neutral-400 start-fade animation-delay-1000 opacity-0">Hello! My name is Singha Wansalaeh,
+        or you can call my pseudonym ForeverFlank.
         I'm currently studying in grade 11 at Mahidol Wittayanusoun school. I'm interested in programming and music. I
         also like topics about space and rocketry.</p>
     </div>
 
     <div
-      class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mx-0 gap-x-6 gap-y-10 backdrop-blur px-16 lg:px-40 py-8 border border-y border-neutral-800">
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-0 gap-x-6 gap-y-10 backdrop-blur px-16 lg:px-40 py-16 border border-y border-neutral-800">
       <div>
         <p class="text-2xl font-semibold my-1">Educations</p>
         <div class="flex flex-col gap-y-2 pl-3 border-l-2 border-neutral-400 ml-0.5">
@@ -114,10 +123,22 @@
             <span class="text-neutral-400">
               TODO</span>
           </p>
-          <p class="leading-6">2023<br>
-            <span class="text-neutral-400">
-              TODO</span>
-          </p>
+          <p class="leading-6">2023</p>
+          <div class="flex flex-row gap-x-1">
+            <p class="text-neutral-400">▸</p>
+            <p class="text-neutral-400">
+              Plastic straw pillows</p>
+          </div>
+          <div class="flex flex-row gap-x-1">
+            <p class="text-neutral-400">▸</p>
+            <p class="text-neutral-400">
+              Bag paintings</p>
+          </div>
+          <div class="flex flex-row gap-x-1">
+            <p class="text-neutral-400">▸</p>
+            <p class="text-neutral-400">
+              TODO</p>
+          </div>
         </div>
       </div>
       <div>
@@ -134,8 +155,18 @@
         </div>
       </div>
     </div>
-    <div>
-      <p>Placeholder</p>
+    <div id="scroll-pos-2" class="px-16 lg:px-40 my-16">
+      <p class="text-4xl sm:text-5xl font-semibold text-right">My Projects</p>
+      <div class="flex flex-col my-16 gap-y-8">
+        <div class="backdrop-blur p-8 border border-neutral-800">
+          <p class="text-2xl sm:text-3xl">First Impression</p>
+          <p class="text-neutral-400">A browser incremental game written in JavaScript</p>
+        </div>
+        <div class="backdrop-blur p-8 border border-neutral-800">
+          <p class="text-2xl sm:text-3xl">Logic Simulator</p>
+          <p class="text-neutral-400">A browser logic circuit simulator written in Javascript and p5.js</p>
+        </div>
+      </div>
     </div>
   </div>
 

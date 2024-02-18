@@ -17,6 +17,7 @@ const ctx = canvas.getContext("2d");
 const maxDistance = 150;
 const maxDistanceSquared = maxDistance * maxDistance;
 let nodes = [];
+let startTime = Date.now();
 
 class BgNode {
     constructor(i) {
@@ -35,7 +36,9 @@ class BgNode {
         ];
     }
     connect() {
-        this.adj = this.adj.filter((n) => distanceSquared(this, n) <= maxDistanceSquared);
+        this.adj = this.adj.filter(
+            (n) => distanceSquared(this, n) <= maxDistanceSquared
+        );
 
         let nodesToConnect = nodes.filter(
             (node) =>
@@ -68,7 +71,7 @@ class BgNode {
 
 function generateNodes() {
     nodes = [];
-    for (let i = 0; i < canvas.width * canvas.height / 3000; i++) {
+    for (let i = 0; i < (canvas.width * canvas.height) / 3000; i++) {
         nodes.push(new BgNode(i));
     }
 }
@@ -81,8 +84,10 @@ function resize() {
 resize();
 
 function background() {
+    let opacity = Math.min(1,
+        Math.max(0, (Date.now() - startTime) / 1000 - 0.5))
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = ctx.fillStyle = "#282828";
+    ctx.strokeStyle = ctx.fillStyle = `rgb(40, 40, 40, ${opacity})`;
     nodes.forEach((n) => {
         n.update();
         n.adj.forEach((m) => {
