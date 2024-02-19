@@ -95,7 +95,7 @@ function background() {
         n.adj.forEach((m) => {
             let d2 = distanceSquared(n, m);
             if (d2 > maxDistanceSquared) return;
-            ctx.lineWidth = 0.6 * (1 - Math.sqrt(d2) / maxDistance);
+            ctx.lineWidth = 0.6 * (1.1 - Math.sqrt(d2) / maxDistance);
             ctx.beginPath();
             ctx.moveTo(Math.round(n.x), Math.round(n.y));
             ctx.lineTo(Math.round(m.x), Math.round(m.y));

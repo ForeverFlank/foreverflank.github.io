@@ -600,6 +600,14 @@ video {
   margin-left: 0.125rem;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .flex {
   display: flex;
 }
@@ -762,6 +770,10 @@ video {
   color: rgb(163 163 163 / var(--tw-text-opacity));
 }
 
+.underline {
+  text-decoration-line: underline;
+}
+
 .opacity-0 {
   opacity: 0;
 }
@@ -829,6 +841,10 @@ video {
 .navbar button:hover {
   transition-duration: 200ms;
   background: rgba(60, 60, 60, 0.3);
+}
+
+.hover\:cursor-pointer:hover {
+  cursor: pointer;
 }
 
 @media (min-width: 640px) {
