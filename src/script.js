@@ -79,7 +79,7 @@ function generateNodes() {
 function resize() {
     ctx.canvas.width = Math.ceil(window.innerWidth / 1.5);
     ctx.canvas.height = Math.ceil(window.innerHeight / 1.5);
-    generateNodes();
+    //generateNodes();
 }
 resize();
 
@@ -89,7 +89,7 @@ function background() {
         Math.max(0, (Date.now() - startTime) / 1000 - 0.5)
     );
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = ctx.fillStyle = `rgb(40, 40, 40, ${opacity})`;
+    ctx.strokeStyle = ctx.fillStyle = `rgb(64, 64, 64, ${opacity})`;
     nodes.forEach((n) => {
         n.update();
         n.adj.forEach((m) => {
