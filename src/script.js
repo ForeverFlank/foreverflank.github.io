@@ -1,120 +1,156 @@
 "use strict";
 
-function wrap(x, a, b) {
-    let range = b - a;
-    let result = x % range;
-    if (result < a) result += range;
-    if (result > b) result -= range;
-    return result;
-}
-function distanceSquared(u, v) {
-    return (u.x - v.x) ** 2 + (u.y - v.y) ** 2;
-}
-
 const canvas = document.getElementById("bg-canvas");
 const ctx = canvas.getContext("2d");
 
-const maxDistance = 150;
-const maxDistanceSquared = maxDistance * maxDistance;
-let nodes = [];
-let startTime = Date.now();
+let size = 13;
+let grid = [];
+let lerpGrid = [];
+let initialized = false;
+let initChance = 0.2;
 
-class BgNode {
-    constructor(i) {
-        this.id = i;
-        this.x = (Math.random() * 1.5 - 0.25) * canvas.width;
-        this.y = (Math.random() * 1.5 - 0.25) * canvas.height;
-        this.vx = (Math.random() - 0.5) * 3;
-        this.vy = (Math.random() - 0.5) * 3;
-        this.adj = [];
-        this.updateSector();
+function initGrid() {
+    grid = Array(size).fill().map(_ => Array(size).fill(0));
+    lerpGrid = Array(size).fill().map(_ => Array(size).fill(0));
+    for (let i = 0; i < size; ++i) {
+        for (let j = 0; j < size; ++j) {
+            grid[i][j] = Math.random() > initChance ? 0 : 1;
+        }
     }
-    updateSector() {
-        this.sector = [
-            Math.floor(this.x / maxDistance),
-            Math.floor(this.y / maxDistance),
-        ];
-    }
-    connect() {
-        this.adj = this.adj.filter(
-            (n) => distanceSquared(this, n) <= maxDistanceSquared
-        );
+}
 
-        let nodesToConnect = nodes.filter(
-            (node) =>
-                Math.abs(node.sector[0] - this.sector[0]) <= 1 &&
-                Math.abs(node.sector[1] - this.sector[1]) <= 1
-        );
-        nodesToConnect.forEach((n) => {
-            if (distanceSquared(this, n) <= maxDistanceSquared) {
-                this.adj.push(n);
+function resizeGrid(newSize) {
+    if (size > newSize) {
+        grid = grid.slice(0, newSize).map(row => row.slice(0, newSize));
+        lerpGrid = lerpGrid.slice(0, newSize).map(row => row.slice(0, newSize));
+    } else if (size < newSize) {
+        for (let i = 0; i < size; i++) {
+            for (let j = size; j < newSize; j++) {
+                grid[i].push(Math.random() > initChance ? 0 : 1);
+                lerpGrid[i].push(0);
             }
-        });
-        this.adj = this.adj.filter(
-            (obj, index) => this.adj.findIndex((x) => x.id === obj.id) === index
-        );
+        }
+
+        for (let i = size; i < newSize; i++) {
+            const newGridRow = [];
+            const newLerpRow = [];
+            for (let j = 0; j < newSize; j++) {
+                newGridRow.push(Math.random() > initChance ? 0 : 1);
+                newLerpRow.push(0);
+            }
+            grid.push(newGridRow);
+            lerpGrid.push(newLerpRow);
+        }
     }
-    update() {
-        this.x = wrap(
-            this.x + this.vx,
-            -0.25 * canvas.width,
-            1.25 * canvas.width
-        );
-        this.y = wrap(
-            this.y + this.vy,
-            -0.25 * canvas.width,
-            1.25 * canvas.height
-        );
-        this.updateSector();
-    }
+
+    size = newSize;
 }
 
-function generateNodes() {
-    nodes = [];
-    for (let i = 0; i < (canvas.width * canvas.height) / 3000; i++) {
-        nodes.push(new BgNode(i));
+function updateGrid() {
+    let newGrid = []
+    for (let i = 0; i < size; i++)
+        newGrid[i] = grid[i].slice();
+
+    for (let i = 0; i < size; ++i) {
+        for (let j = 0; j < size; ++j) {
+            let neighbour = 0;
+            for (let k = -1; k <= 1; ++k) {
+                for (let l = -1; l <= 1; ++l) {
+                    if (k == 0 && l == 0) continue;
+                    let ni = (i + k + size) % size;
+                    let nj = (j + l + size) % size;
+                    neighbour += grid[nj][ni];
+                }
+            }
+            if (grid[j][i] == 0) {
+                if (neighbour == 3)
+                    newGrid[j][i] = 1;
+                else
+                    newGrid[j][i] = 0;
+            } else {
+                if (neighbour == 2 || neighbour == 3)
+                    newGrid[j][i] = 1;
+                else
+                    newGrid[j][i] = 0;
+            }
+        }
     }
+    grid = newGrid;
 }
 
-function resize() {
-    ctx.canvas.width = Math.ceil(window.innerWidth / 1.5);
-    ctx.canvas.height = Math.ceil(window.innerHeight / 1.5);
-    //generateNodes();
-}
-resize();
-
-function background() {
-    let opacity = Math.min(
-        1,
-        Math.max(0, (Date.now() - startTime) / 1000 - 0.5)
-    );
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = ctx.fillStyle = `rgb(64, 64, 64, ${opacity})`;
-    nodes.forEach((n) => {
-        n.update();
-        n.adj.forEach((m) => {
-            let d2 = distanceSquared(n, m);
-            if (d2 > maxDistanceSquared) return;
-            ctx.lineWidth = 0.6 * (1.1 - Math.sqrt(d2) / maxDistance);
+function draw() {
+    let width = canvas.width;
+    let height = canvas.height;
+    let m = Math.max(width, height);
+    let gap = 3;
+    let smooth = 0.2;
+    for (let i = 0; i < size; ++i) {
+        for (let j = 0; j < size; ++j) {
+            let w = m / size;
+            let h = m / size;
+            let x = width / 2 + w * (i - size / 2);
+            let y = height / 2 + h * (j - size / 2);
             ctx.beginPath();
-            ctx.moveTo(Math.round(n.x), Math.round(n.y));
-            ctx.lineTo(Math.round(m.x), Math.round(m.y));
-            ctx.stroke();
-        });
-        ctx.beginPath();
-        ctx.arc(Math.round(n.x), Math.round(n.y), 1, 0, 2 * Math.PI, false);
-        ctx.fill();
-    });
+            ctx.rect(x + gap, y + gap, w - gap, h - gap)
+            let c = lerpGrid[j][i] * smooth + grid[j][i] * (1 - smooth);
+            lerpGrid[j][i] = c;
+            c = 0x18 * (1-c) + 0x20 * c;
+            ctx.fillStyle = `rgb(${c}, ${c}, ${c})`;
+            ctx.fill();
+        }
+    }
 }
 
-generateNodes();
-
-function backgroundConnect() {
-    nodes.forEach((n) => n.connect());
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let m = Math.max(canvas.width, canvas.height);
+    let newSize = Math.min(Math.round(m / 16), 32);
+    if (!initialized) {
+        size = newSize;
+        initGrid();
+        initialized = true;
+    } else {
+        resizeGrid(newSize);
+    }
+    draw();
 }
-backgroundConnect();
 
-window.addEventListener("resize", resize);
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
 
-setInterval(backgroundConnect, 300);
-setInterval(background, 1000 / 30);
+let lastX = -1;
+let lastY = -1;
+function mouseMove(e) {
+    let m = Math.max(canvas.width, canvas.height);
+
+    let offsetX = 0;
+    let offsetY = 0;
+
+    if (canvas.width > canvas.height) {
+        offsetY = (m - canvas.height) / 2;
+    } else {
+        offsetX = (m - canvas.width) / 2;
+    }
+
+    let x = Math.floor((e.clientX - offsetX) * size / m);
+
+    let y = Math.floor((e.clientY - offsetY) * size / m);
+
+    if (x < 0 || y < 0 || x >= size || y >= size) return;
+    if (x == lastX && y == lastY) return;
+
+    lastX = x;
+    lastY = y;
+    grid[y][x] = 1 - grid[y][x];
+}
+
+// window.addEventListener("mousemove", mouseMove);
+
+setInterval(updateGrid, 1000 / 8);
+
+function loop() {
+    draw();
+    requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop)

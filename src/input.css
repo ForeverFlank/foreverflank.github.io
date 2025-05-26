@@ -56,3 +56,12 @@
     transition-duration: 200ms;
     background: rgba(60, 60, 60, 0.3);
 }
+
+.navbar a {
+    transition-duration: 200ms;
+}
+
+.navbar a:hover {
+    transition-duration: 200ms;
+    background: rgba(60, 60, 60, 0.3);
+}
