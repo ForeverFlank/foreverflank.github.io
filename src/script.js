@@ -83,7 +83,7 @@ function draw() {
     let height = canvas.height;
     let m = Math.max(width, height);
     let gap = 3;
-    let smooth = 0.2;
+    let smooth = 0.8;
     for (let i = 0; i < size; ++i) {
         for (let j = 0; j < size; ++j) {
             let w = m / size;
@@ -133,9 +133,9 @@ function mouseMove(e) {
         offsetX = (m - canvas.width) / 2;
     }
 
-    let x = Math.floor((e.clientX - offsetX) * size / m);
+    let x = Math.floor((e.clientX + offsetX) * size / m);
 
-    let y = Math.floor((e.clientY - offsetY) * size / m);
+    let y = Math.floor((e.clientY + offsetY) * size / m);
 
     if (x < 0 || y < 0 || x >= size || y >= size) return;
     if (x == lastX && y == lastY) return;
@@ -145,7 +145,7 @@ function mouseMove(e) {
     grid[y][x] = 1 - grid[y][x];
 }
 
-// window.addEventListener("mousemove", mouseMove);
+window.addEventListener("mousemove", mouseMove);
 
 setInterval(updateGrid, 1000 / 8);
 
