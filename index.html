@@ -14,136 +14,119 @@
 </head>
 
 <body class="bg-181818 overflow-x-hidden overscroll-none">
-  <canvas id="bg-canvas" class="fixed -z-10"></canvas>
-  <div
-    class="w-full h-14 fixed top-0 backdrop-blur border-b border-neutral-800 z-10 px-6 sm:px-16 lg:px-40 navbar">
-    <div class="flex flex-row justify-between">
-      <div class="flex flex-row gap-x-4 sm:gap-x-6">
-        <button class="h-14 w-18 sm:w-24" onclick="document.getElementById('scroll-pos-1').scrollIntoView({
-          behavior: 'smooth'
-        })">Home</button>
-        <button class="h-14 w-18 sm:w-24" onclick="document.getElementById('scroll-pos-2').scrollIntoView({
-          behavior: 'smooth'
-        })">Projects</button>
+  <header>
+    <div class="w-full h-14 fixed top-0 backdrop-blur border-b border-neutral-800 z-10 px-6 sm:px-16 lg:px-40 navbar">
+      <div class="flex flex-row justify-between">
+        <div class="flex flex-row gap-x-4 sm:gap-x-6">
+          <button class="h-14 w-18 sm:w-24" onclick="document.getElementById('scroll-pos-1').scrollIntoView({
+            behavior: 'smooth'
+          })">Home</button>
+          <button class="h-14 w-18 sm:w-24" onclick="document.getElementById('scroll-pos-2').scrollIntoView({
+            behavior: 'smooth'
+          })">Projects</button>
+        </div>
+        <a class="flex items-center justify-center button h-14 w-18 sm:w-24" target="_blank" rel="noopener noreferrer"
+          href="https://github.com/ForeverFlank">GitHub</a>
       </div>
-      <a class="flex items-center justify-center button h-14 w-18 sm:w-24" target="_blank" rel="noopener noreferrer" href="https://github.com/ForeverFlank">GitHub</a>
     </div>
-  </div>
-
-  <div>
+  </header>
+  <main>
     <div id="scroll-pos-1" class="h-14"></div>
     <div class="m-28 mx-auto text-center">
-      <p class="text-3xl sm:text-4xl md:text-5xl  start-fade opacity-0">Hi, I'm</p>
-      <p class="text-5xl sm:text-6xl md:text-8xl font-semibold  start-fade animation-delay-400 opacity-0">ForeverFlank
-      </p>
-      <p class="text-3xl sm:text-4xl md:text-5xl text-neutral-400 start-fade animation-delay-600 opacity-0">Singha
-        Wansalaeh</p>
-      <p class="text-2xl text-neutral-400 start-fade animation-delay-1000 opacity-0 my-3">[SITE UNDER CONSTRUCTION]</p>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl  start-fade opacity-0">Hi, I'm</h2>
+      <h1 class="text-5xl sm:text-6xl md:text-8xl font-semibold  start-fade animation-delay-400 opacity-0">ForeverFlank
+      </h1>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl text-neutral-400 start-fade animation-delay-600 opacity-0">Singha
+        Wansalaeh</h2>
     </div>
 
     <div class="px-12 sm:px-16 lg:px-40 my-8 md:my-16">
       <p class="text-2xl font-semibold my-1 start-fade animation-delay-1000 opacity-0"></p>
-      <p class="text-lg text-neutral-400 start-fade animation-delay-1200 opacity-0">Hello! My name is Singha Wansalaeh,
+      <p class="text-lg text-neutral-400 start-fade animation-delay-1000 opacity-0">Hello! My name is Singha
+        Wansalaeh,
         or you can call my pseudonym ForeverFlank.
-        I recently graduated from Mahidol Wittayanusoun school and currently majoring in CEDT at Chulalongkorn University. I'm interested in programming and music, and also like topics about space and rocketry.</p>
+        I recently graduated from Mahidol Wittayanusoun school and currently majoring in CEDT at Chulalongkorn
+        University. I'm interested in programming, space and rocketry, as well as computer architecture and music.</p>
     </div>
 
-    <div class="mx-0 backdrop-blur px-12 sm:px-16 lg:px-40 py-8 md:py-16 border border-y border-neutral-800">
-      <p class="text-4xl sm:text-5xl font-semibold">About me</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-10 my-8 md:my-16">
-        <div>
-          <p class="text-2xl font-semibold my-1">Educations</p>
-          <div class="flex flex-col gap-y-2 pl-3 border-l-2 border-neutral-400 ml-0.5">
-            <p class="leading-6">[what do I put in here?]<br>
-              <span class="text-neutral-400">Chulalongkorn University</span><br>
-              <span class="text-neutral-400">2025 - Present</span>
-            </p>
-            <p class="leading-6">Grade 10-12<br>
-              <span class="text-neutral-400">Mahidol Wittayanusoun School</span><br>
-              <span class="text-neutral-400">2022 - 2024</span>
-            </p>
-            <p class="leading-6">Grade 7-9<br>
-              <span class="text-neutral-400">Hatyaiwittayalai School</span><br>
-              <span class="text-neutral-400">2019 - 2021</span>
-            </p>
+    <div
+      class="flex flex-col align-middle content-center mx-0 backdrop-blur px-12 sm:px-16 lg:px-40 py-12 md:py-16 border border-y border-neutral-800">
+      <h1 class="text-4xl font-semibold mt-0 mb-10 text-center">Educations</h1>
+      <ul class="flex flex-col content-center mx-auto gap-y-4">
+        <li class="leading-6">
+          <span class="text-lg">Chulalongkorn University</span><br>
+          <span class="text-neutral-400">Bachelor of Engineering Program in Computer Engineering and Digital
+            Technology</span><br>
+          <span class="text-neutral-400">2025&ndash;Present</span>
+        </li>
+        <li class="leading-6">
+          <span class="text-lg">Mahidol Wittayanusoun School</span><br>
+          <span class="text-neutral-400">Senior High School</span><br>
+          <span class="text-neutral-400">2022&ndash;2024</span>
+        </li>
+      </ul>
+
+
+      <!-- <div>
+        <p class="text-2xl font-semibold my-1">Academics & Competitions</p>
+        <div class="flex flex-col gap-y-2 pl-3 border-l-2 border-neutral-400 ml-0.5">
+          <p class="leading-6">2024<br>
+          </p>
+          <div class="flex flex-row gap-x-1">
+            <p class="text-neutral-400">▸</p>
+            <p class="text-neutral-400">
+              Space Youth Challenge 2024 Winner</p>
+          </div>
+          <div class="flex flex-row gap-x-1">
+            <p class="text-neutral-400">▸</p>
+            <p class="text-neutral-400">
+              NSC 2024 Honorable Mention Award</p>
+          </div>
+
+          <p class="leading-6">2023<br>
+          </p>
+          <div class="flex flex-row gap-x-1">
+            <p class="text-neutral-400">▸</p>
+            <p class="text-neutral-400">
+              MWIT STEM Challenge 2023 Winner</p>
+          </div>
+          <div class="flex flex-row gap-x-1">
+            <p class="text-neutral-400">▸</p>
+            <p class="text-neutral-400">
+              Thailand CANSAT-ROCKET Competition 2023</p>
+          </div>
+
+          <p class="leading-6">2022</p>
+          <div class="flex flex-row gap-x-1">
+            <p class="text-neutral-400">▸</p>
+            <p class="text-neutral-400">
+              KU01</p>
+          </div>
+          <div class="flex flex-row gap-x-1">
+            <p class="text-neutral-400">▸</p>
+            <p class="text-neutral-400">
+              Space Youth Challenge 2022</p>
+          </div>
+
+          <p class="leading-6">2021</p>
+          <div class="flex flex-row gap-x-1">
+            <p class="text-neutral-400">▸</p>
+            <p class="text-neutral-400">
+              POSN Computer Camp 2</p>
           </div>
         </div>
-        <div>
-          <p class="text-2xl font-semibold my-1">Skills</p>
-          <div class="flex flex-col gap-y-2 pl-3 border-l-2 border-neutral-400 ml-0.5">
-            <p class="leading-6">Programming<br>
-              <span class="text-neutral-400">C/C++, C#, Python, HTML, CSS, JavaScript</span>
-            </p>
-            <p class="leading-6">Music<br>
-              <span class="text-neutral-400">Drumming, Piano</span>
-            </p>
-            <p class="leading-6">3D Art<br>
-              <span class="text-neutral-400">Blender</span>
-            </p>
-          </div>
-        </div>
-        <div>
-          <p class="text-2xl font-semibold my-1">Hobbies & Interests</p>
-          <div class="flex flex-col gap-y-2 pl-3 border-l-2 border-neutral-400 ml-0.5">
-            <p class="leading-6">Programming</p>
-            <p class="leading-6">Music</p>
-            <p class="leading-6">3D Art</p>
-            <p class="leading-6">Gaming</p>
-            <p class="leading-6">Space & Rocketry</p>
-          </div>
-        </div>
-        <div>
-          <p class="text-2xl font-semibold my-1">Academics & Competition</p>
-          <div class="flex flex-col gap-y-2 pl-3 border-l-2 border-neutral-400 ml-0.5">
-            <p class="leading-6">2024<br>
-            </p>
-            <div class="flex flex-row gap-x-1">
-              <p class="text-neutral-400">▸</p>
-              <p class="text-neutral-400">
-                Space Youth Challenge 2024 Winner</p>
-            </div>
-            <div class="flex flex-row gap-x-1">
-              <p class="text-neutral-400">▸</p>
-              <p class="text-neutral-400">
-                NSC 2024 Honorable Mention Award</p>
-            </div>
+      </div> -->
+    </div>
 
-            <p class="leading-6">2023<br>
-            </p>
-            <div class="flex flex-row gap-x-1">
-              <p class="text-neutral-400">▸</p>
-              <p class="text-neutral-400">
-                MWIT STEM Challenge 2023 Winner</p>
-            </div>
-            <div class="flex flex-row gap-x-1">
-              <p class="text-neutral-400">▸</p>
-              <p class="text-neutral-400">
-                Thailand CANSAT-ROCKET Competition 2023</p>
-            </div>
+    <div
+      class="flex flex-col align-middle content-center mx-0 backdrop-blur px-12 sm:px-16 lg:px-40 py-12 md:py-16 border border-y border-neutral-800">
+      <h1 class="text-4xl font-semibold mt-0 mb-10 text-center">Skills & Interests</h1>
+      <div class="flex justify-center">
+        <div class="w-[calc(min(60vh,60vw))] h-[calc(min(60vh,60vw))] border border-white">
 
-            <p class="leading-6">2022</p>
-            <div class="flex flex-row gap-x-1">
-              <p class="text-neutral-400">▸</p>
-              <p class="text-neutral-400">
-                KU01</p>
-            </div>
-            <div class="flex flex-row gap-x-1">
-              <p class="text-neutral-400">▸</p>
-              <p class="text-neutral-400">
-                Space Youth Challenge 2022</p>
-            </div>
-
-            <p class="leading-6">2021</p>
-            <div class="flex flex-row gap-x-1">
-              <p class="text-neutral-400">▸</p>
-              <p class="text-neutral-400">
-                POSN Computer Camp 2</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
-
 
     <div id="scroll-pos-2" class="px-12 sm:px-16 lg:px-40 my-8 md:my-16">
       <p class="text-4xl sm:text-5xl font-semibold text-right">My Creations</p>
@@ -151,15 +134,14 @@
         <div class="backdrop-blur p-8 border border-neutral-800">
           <p class="text-2xl sm:text-3xl">Miscellaneous Zone</p>
           <p class="text-lg">
-            <a href="https://foreverflank.github.io/misc/"
-              class="text-lg underline hover:cursor-pointer">Link</a>
+            <a href="https://foreverflank.github.io/misc/" class="text-lg underline hover:cursor-pointer">Link</a>
           </p>
 
           <p class="text-neutral-400">Random projects go here...</p>
         </div>
         <div class="backdrop-blur p-8 border border-neutral-800">
           <p class="text-2xl sm:text-3xl">First Impression</p>
-          <p class="text-lg">[Beta]&emsp;[to-be-rewritten]
+          <p class="text-lg">[WIP]&emsp;[to-be-rewritten]
             <a href="https://foreverflank.github.io/first-impression/"
               class="text-lg underline ml-4 hover:cursor-pointer">Link</a>
           </p>
@@ -168,12 +150,13 @@
         </div>
         <div class="backdrop-blur p-8 border border-neutral-800">
           <p class="text-2xl sm:text-3xl">Logic Simulator</p>
-          <p class="text-lg">[Pre-Alpha]&emsp;[also-to-be-rewritten]
+          <p class="text-lg">[also-to-be-rewritten]
             <a href="https://foreverflank.github.io/circuit-webapp/"
               class="text-lg underline ml-4 hover:cursor-pointer">Link</a>
           </p>
 
-          <p class="text-neutral-400">A browser logic circuit simulator written in Javascript and <s class="text-neutral-400">p5.js</s> PixiJS</p>
+          <p class="text-neutral-400">A browser logic circuit simulator written in Javascript and <s
+              class="text-neutral-400">p5.js</s> PixiJS</p>
         </div>
         <div class="backdrop-blur p-8 border border-neutral-800">
           <p class="text-2xl sm:text-3xl">DeciYear</p>
@@ -182,10 +165,13 @@
         </div>
       </div>
     </div>
-  </div>
+
+  </main>
 
 </body>
 
-<script src="src/script.js"></script>
+<script>
+
+</script>
 
 </html>
