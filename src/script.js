@@ -74,7 +74,7 @@ function draw(grid, lerpGrid, cellSize, gap, smooth) {
 
     for (let i = 0; i < gridHeight; ++i) {
         for (let j = 0; j < gridWidth; ++j) {
-            const x = cellSize * (j - gridHeight / 2) + screenWidth / 2;
+            const x = cellSize * (j - gridWidth / 2) + screenWidth / 2;
             const y = cellSize * (i - gridHeight / 2) + screenHeight / 2;
             let c = lerpGrid[i][j] * smooth + grid[i][j] * (1 - smooth);
             lerpGrid[i][j] = c;
@@ -110,7 +110,7 @@ function mouseMove(event) {
 window.addEventListener("mousemove", mouseMove);
 
 const prob = 0.2;
-const cellSize = 40;
+const cellSize = 64;
 
 let gridSize = calculateGridSize(window.innerWidth, window.innerHeight, cellSize);
 let grid = [[]];
@@ -127,10 +127,10 @@ resizeCanvas();
 
 setInterval(function () {
     grid = updateGrid(grid);
-}, 150);
+}, 200);
 
 function loop() {
-    draw(grid, lerpGrid, cellSize, 2, 0.8);
+    draw(grid, lerpGrid, cellSize, 2, 0.9);
     requestAnimationFrame(loop);
 }
 requestAnimationFrame(loop);
