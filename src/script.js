@@ -78,7 +78,7 @@ function draw(grid, lerpGrid, cellSize, gap, smooth) {
             const y = cellSize * (i - gridHeight / 2) + screenHeight / 2;
             let c = lerpGrid[i][j] * smooth + grid[i][j] * (1 - smooth);
             lerpGrid[i][j] = c;
-            c = 0x18 * (1 - c) + 0x20 * c;
+            c = 0x18 * (1 - c) + 0x1d * c;
             ctx.fillStyle = `rgb(${c}, ${c}, ${c})`;
             ctx.fillRect(
                 x + gap, y + gap,
