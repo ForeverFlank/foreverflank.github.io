@@ -96,11 +96,15 @@ function mouseMove(event) {
     const gridWidth = grid[0].length;
     const gridHeight = grid.length;
 
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
 
-    const j = Math.floor((mouseX - screenWidth / 2 + gridHeight / 2 * cellSize) / cellSize);
-    const i = Math.floor((mouseY - screenHeight / 2 + gridHeight / 2 * cellSize) / cellSize);
+    const j = Math.floor(
+        (mouseX - canvasWidth / 2) / cellSize + gridWidth / 2
+    );
+    const i = Math.floor(
+        (mouseY - canvasHeight / 2) / cellSize + gridHeight / 2
+    );
 
     if (i >= 0 && i < gridHeight && j >= 0 && j < gridWidth) {
         grid[i][j] = 1;
@@ -127,7 +131,7 @@ resizeCanvas();
 
 setInterval(function () {
     grid = updateGrid(grid);
-}, 200);
+}, 250);
 
 function loop() {
     draw(grid, lerpGrid, cellSize, 2, 0.9);
